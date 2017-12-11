@@ -50,8 +50,8 @@ RUN mvn -f /opt/git/charaparser/pom.xml package -P learn
 RUN mvn -f /opt/git/charaparser/pom.xml package -P markup
 RUN cp /opt/git/charaparser/target/semantic-markup-learn-${charaparserVersion}-jar-with-dependencies.jar /opt/learn.jar
 RUN cp /opt/git/charaparser/target/semantic-markup-markup-${charaparserVersion}-jar-with-dependencies.jar /opt/markup.jar
-RUN echo "java -jar /opt/learn.jar \"\$*\"" >> /root/learn
-RUN echo "java -jar /opt/markup.jar \"\$*\"" >> /root/markup
+RUN echo "java -jar /opt/learn.jar \$*" >> /root/learn
+RUN echo "java -jar /opt/markup.jar \$*" >> /root/markup
 RUN chmod +x /root/learn
 RUN chmod +x /root/markup
 
