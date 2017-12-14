@@ -29,6 +29,7 @@ RUN chmod +x /opt/setupDB.sh
 RUN /opt/setupDB.sh
 
 ### Setup remaining charparser requirements
+COPY fallback_glossaries /opt/resources/glossaries
 RUN wget http://cpansearch.perl.org/src/GRANTM/Encoding-FixLatin-1.04/lib/Encoding/FixLatin.pm -P /usr/lib/x86_64-linux-gnu/perl5/5.22/Encoding
 RUN mkdir -p /root/workspace
 RUN mkdir -p /opt/resources/perl
@@ -46,10 +47,10 @@ RUN wget --no-check-certificate -P /opt/resources/ontologies http://purl.obolibr
 RUN wget --no-check-certificate -P /opt/resources/ontologies http://purl.obolibrary.org/obo/spd.owl
 
 #Build Charaparser steps
-RUN mvn -f /opt/git/charaparser/pom.xml package -P learn
-RUN mvn -f /opt/git/charaparser/pom.xml package -P markup
-RUN cp /opt/git/charaparser/target/semantic-markup-learn-${charaparserVersion}-jar-with-dependencies.jar /opt/learn.jar
-RUN cp /opt/git/charaparser/target/semantic-markup-markup-${charaparserVersion}-jar-with-dependencies.jar /opt/markup.jar
+RUN mvn -f /opt/git/charaparser/pom.xml package -P fnaLearn
+RUN mvn -f /opt/git/charaparser/pom.xml package -P fnaMarkup
+RUN cp /opt/git/charaparser/target/semantic-markup-fnaLearn-${charaparserVersion}-jar-with-dependencies.jar /opt/learn.jar
+RUN cp /opt/git/charaparser/target/semantic-markup-fnaMarkup-${charaparserVersion}-jar-with-dependencies.jar /opt/markup.jar
 RUN echo "java -jar /opt/learn.jar \$*" >> /root/learn
 RUN echo "java -jar /opt/markup.jar \$*" >> /root/markup
 RUN chmod +x /root/learn
