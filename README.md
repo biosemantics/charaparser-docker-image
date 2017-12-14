@@ -6,9 +6,9 @@
    * `<local workspace>` specifies the directory where the workspace folder should be found in the local machine
    * recommend `<container input>` as `/root/input`
 2. In container
-   1. `./learn -i <container input> -c <configuration> -z <run id>`
+   1. `./learn -i <container input> -z <run id>`
    2. Optionally visit `<local workspace>/<run id>/nextStep.html` to visit link for term categorization step.
-   3. `./markup -i <container input> -c <configuration> -z <run id>`
+   3. `./markup -i <container input> -z <run id>`
 3. Outputted files and log files can be found in `<local workspace>/<run id>`
 
 
