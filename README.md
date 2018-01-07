@@ -20,10 +20,10 @@ Note: After leaving the container - if you do not explicitly remove the containe
 
 1. Check out this repository to <location>
 2. cd into <location>
-3. docker build -t charaparser-docker-image . (You may need to use the --no-cache option to force the use of updated repository content)
-4. 
+3. docker build -t <local image name> . 
+  * (You may need to use the --no-cache option to force the use of updated repository content)
   
 ## Pushing the image to dockerhub
 1. docker login
-2. docker tag
-3. docker push
+2. docker tag <local image name> <dockerhub user>/<image name on dockerhub>
+3. docker push <dockerhub user>/<image name on dockerhub>
