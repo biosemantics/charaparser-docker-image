@@ -23,6 +23,9 @@ RUN apt-get install -yq \
 RUN git clone https://github.com/biosemantics/charaparser.git /opt/git/charaparser
 COPY configs/edu/arizona/biosemantics/semanticmarkup /opt/git/charaparser/src/main/resources/edu/arizona/biosemantics/semanticmarkup
 
+### Get Enhance source
+COPY configs/edu/arizona/biosemantics/semanticmarkup/enhance /opt/git/charaparser/enhance/src/main/resources/edu/arizona/biosemantics/semanticmarkup/enhance
+
 ### Setup MySQL
 COPY setupDB.sh /opt/setupDB.sh
 RUN chmod +x /opt/setupDB.sh
@@ -55,6 +58,15 @@ RUN echo "java -jar /opt/learn.jar \$*" >> /root/learn
 RUN echo "java -jar /opt/markup.jar \$*" >> /root/markup
 RUN chmod +x /root/learn
 RUN chmod +x /root/markup
+
+### Setup remaining enhance requirements
+COPY ontology /opt/resources/ontology
+
+#Build enhance step
+RUN mvn -f /opt/git/charaparser/enhance/pom.xml package -P fnaRun
+RUN cp /opt/git/charaparser/enhance/target/enhance-fnaRun-0.0.23-SNAPSHOT-jar-with-dependencies.jar /opt/enhance.jar
+RUN echo "java -jar /opt/enhance.jar \$* -i /root/workspace/\$2 -o /root/workspace/\$2_enhanced -s /opt/resources/ontology/synonym.csv -p /opt/resources/ontology/partof.csv" >> /root/enhance
+RUN chmod +x /root/enhance
 
 #Reduce image size
 RUN rm -R /opt/git
