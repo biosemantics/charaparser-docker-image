@@ -25,6 +25,7 @@ COPY configs/edu/arizona/biosemantics/semanticmarkup /opt/git/charaparser/src/ma
 
 ### Get Enhance source
 COPY configs/edu/arizona/biosemantics/semanticmarkup/enhance /opt/git/charaparser/enhance/src/main/resources/edu/arizona/biosemantics/semanticmarkup/enhance
+COPY configs/edu/arizona/biosemantics/semanticmarkup/enhance/log4j.properties /opt/git/charaparser/enhance/src/main/resources/log4j.properties
 
 ### Setup MySQL
 COPY setupDB.sh /opt/setupDB.sh
