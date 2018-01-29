@@ -25,7 +25,6 @@ COPY configs/edu/arizona/biosemantics/semanticmarkup /opt/git/charaparser/src/ma
 
 ### Get Enhance source
 COPY configs/edu/arizona/biosemantics/semanticmarkup/enhance /opt/git/charaparser/enhance/src/main/resources/edu/arizona/biosemantics/semanticmarkup/enhance
-COPY configs/edu/arizona/biosemantics/semanticmarkup/enhance/log4j.properties /opt/git/charaparser/enhance/src/main/resources/log4j.properties
 
 ### Setup MySQL
 COPY setupDB.sh /opt/setupDB.sh
@@ -66,7 +65,7 @@ COPY ontology /opt/resources/ontology
 #Build enhance step
 RUN mvn -f /opt/git/charaparser/enhance/pom.xml package -P fnaRun
 RUN cp /opt/git/charaparser/enhance/target/enhance-fnaRun-0.0.23-SNAPSHOT-jar-with-dependencies.jar /opt/enhance.jar
-RUN echo "java -jar /opt/enhance.jar \$* -i /root/workspace/\$2 -o /root/workspace/\$2_enhanced -s /opt/resources/ontology/synonym.csv -p /opt/resources/ontology/partof.csv" >> /root/enhance
+RUN echo "java -jar /opt/enhance.jar \$* -i /root/workspace/\$2/out -s /opt/resources/ontology/synonym.csv -p /opt/resources/ontology/partof.csv" >> /root/enhance
 RUN chmod +x /root/enhance
 
 #Reduce image size
