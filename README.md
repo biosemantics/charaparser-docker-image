@@ -11,8 +11,12 @@
    1. `./learn -i <container input> -z <run id>`
    2. Optionally visit `<local workspace>/<run id>/nextStep.html` to visit link for term categorization step.
    3. `./markup -i <container input> -z <run id>`
-   4. `./enhance -z <run id>`
+   4. Optionally run `./enhance -z <run id>`
 3. Outputted files and log files can be found in `<local workspace>/<run id>`
+   1. Output of charaparser can be found in `<local workspace>/<run id>/out`
+   2. Log files of charaparser can be found at `<local workspace>/<run id>/debug.log` and `<local workspace>/<run id>/error.log`
+   3. Output of enhance can be found in `<local workspace>/<run id>/out_enhanced`
+   4. Log files of enhance can be found at `<local workspace>/<run id>/enhance_debug.log` and `<local workspace>/<run id>/enhance_error.log`
 
 Note: After leaving the container - if you do not explicitly remove the container with `docker rm`, the container will remain running. Thus another docker run will start up a second container. You may want to use the `docker attach` command to attach input/output to the container, and/or periodically do a `docker system prune`, or one of the other cleanup commands to stay on top of your filesystem utilization due to running docker containers.
 
