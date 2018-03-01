@@ -64,7 +64,7 @@ COPY ontology /opt/resources/ontology
 
 #Build enhance step
 RUN mvn -f /opt/git/charaparser/enhance/pom.xml package -P fnaRun
-RUN cp /opt/git/charaparser/enhance/target/enhance-fnaRun-0.0.23-SNAPSHOT-jar-with-dependencies.jar /opt/enhance.jar
+RUN cp /opt/git/charaparser/enhance/target/enhance-fnaRun-0.0.24-SNAPSHOT-jar-with-dependencies.jar /opt/enhance.jar
 RUN echo "java -jar /opt/enhance.jar \$* -i /root/workspace/\$2/out -s /opt/resources/ontology/synonym.csv -p /opt/resources/ontology/partof.csv" >> /root/enhance
 RUN chmod +x /root/enhance
 
