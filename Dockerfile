@@ -3,7 +3,7 @@ MAINTAINER Thomas Rodenhausen <thomas.rodenhausen@gmail.com>
 LABEL Description="This image is created for the purpose of easily running standalone charaparser in a preconfigured environment"
 
 ARG charaparserVersion=0.1.196-SNAPSHOT
-ARG enhanceVersion=0.0.24-SNAPSHOT
+ARG enhanceVersion=0.0.25-SNAPSHOT
 
 USER root
 
